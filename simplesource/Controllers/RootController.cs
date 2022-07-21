@@ -14,14 +14,12 @@ namespace simplesource.Controllers
     {
         // POST /
         [HttpPost]
-        public string Post([FromBody]string value)
+        public string Post([FromBody] string value)
         {
-            using (StreamWriter sw = new StreamWriter("logR.txt", true))
-            {
-                sw.WriteLine($"{DateTime.UtcNow:HH:mm:ss}: root");
-            }
+            using var sw = new StreamWriter("logR.txt", true);
+            sw.WriteLine($"{DateTime.UtcNow:HH:mm:ss}: root");
 
-            return "{ \"aa\": \"11\", \"bb\": \"rr\" }";
+            return "{ \"aa\": 11, \"bb\": \"rr\" }";
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace simplesource.Controllers
 {
@@ -15,18 +14,12 @@ namespace simplesource.Controllers
     {
         // POST /search
         [HttpPost]
-        public string Post([FromBody]string value)
+        public string Post([FromBody] string value)
         {
-            using (StreamWriter sw = new StreamWriter("logS.txt", true))
-            {
-                sw.WriteLine($"{DateTime.UtcNow:HH:mm:ss}: search");
-            }
+            using var sw = new StreamWriter("logS.txt", true);
+            sw.WriteLine($"{DateTime.UtcNow:HH:mm:ss}: search");
 
-            dynamic j = new JObject();
-            j.aa = 11;
-            j.bb = "ss";
-
-            return j.ToString();
+            return "{ \"aa\": 11, \"bb\": \"ss\" }";
         }
     }
 }
